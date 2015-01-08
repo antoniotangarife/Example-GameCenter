@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6724" systemVersion="14C81h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Example_Game_Center" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,8 +15,72 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QqA-4l-y8o">
+                                <rect key="frame" x="197" y="129" width="206" height="30"/>
+                                <state key="normal" title="Open Game Center Player">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ActionOpenGameCenter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="47w-8i-uD1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5PM-5F-Jx2">
+                                <rect key="frame" x="234" y="260" width="169" height="30"/>
+                                <state key="normal" title="Reset All Achievement">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ActionResetAchievement:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pMn-fw-hsu"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Achievement Identifier" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MPD-pf-3gx">
+                                <rect key="frame" x="203" y="167" width="214" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRW-9g-cT0">
+                                <rect key="frame" x="216" y="213" width="169" height="30"/>
+                                <state key="normal" title="Valide Achievement">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ActionValidAchievement:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zib-KW-5lu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1oe-oV-CXf">
+                                <rect key="frame" x="216" y="298" width="169" height="30"/>
+                                <state key="normal" title="Is Achievement Finished">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ActionIsFinish:" destination="BYZ-38-t0r" eventType="touchUpInside" id="t7X-Hc-ZAt"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="5PM-5F-Jx2" secondAttribute="centerY" id="97m-Er-hsF"/>
+                            <constraint firstAttribute="centerX" secondItem="5PM-5F-Jx2" secondAttribute="centerX" constant="50" id="ET1-Ny-EIF"/>
+                            <constraint firstAttribute="centerX" secondItem="QqA-4l-y8o" secondAttribute="centerX" id="Llo-Jz-3vC"/>
+                            <constraint firstAttribute="centerY" secondItem="QqA-4l-y8o" secondAttribute="centerY" constant="156" id="TdJ-VF-gu7"/>
+                            <constraint firstAttribute="centerX" secondItem="MPD-pf-3gx" secondAttribute="centerX" id="aNX-Jr-Qqs"/>
+                            <constraint firstItem="1oe-oV-CXf" firstAttribute="top" secondItem="5PM-5F-Jx2" secondAttribute="bottom" constant="8" id="bL9-9e-RTf"/>
+                            <constraint firstAttribute="centerX" secondItem="1oe-oV-CXf" secondAttribute="centerX" constant="50" id="dGc-t8-s0v"/>
+                            <constraint firstAttribute="centerX" secondItem="FRW-9g-cT0" secondAttribute="centerX" id="sHv-Su-H45"/>
+                            <constraint firstItem="FRW-9g-cT0" firstAttribute="top" secondItem="MPD-pf-3gx" secondAttribute="bottom" constant="16" id="sxj-W9-Cxd"/>
+                            <constraint firstAttribute="centerY" secondItem="FRW-9g-cT0" secondAttribute="centerY" id="xft-3d-oVR"/>
+                            <constraint firstItem="5PM-5F-Jx2" firstAttribute="top" secondItem="FRW-9g-cT0" secondAttribute="bottom" constant="8" id="ze3-I4-eRr"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="97m-Er-hsF"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="textIDAchievement" destination="MPD-pf-3gx" id="cjD-5R-GXn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

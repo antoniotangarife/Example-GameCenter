@@ -13,6 +13,8 @@
 		88B15A9E1A5F0C000090B55C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88B15A9D1A5F0C000090B55C /* Images.xcassets */; };
 		88B15AA11A5F0C000090B55C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88B15A9F1A5F0C000090B55C /* LaunchScreen.xib */; };
 		88B15AAD1A5F0C000090B55C /* Example_Game_CenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B15AAC1A5F0C000090B55C /* Example_Game_CenterTests.swift */; };
+		88B15AB71A5F0C0E0090B55C /* GameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B15AB61A5F0C0E0090B55C /* GameCenter.swift */; };
+		88B15AB91A5F0FBB0090B55C /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B15AB81A5F0FBB0090B55C /* GameKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		88B15AA61A5F0C000090B55C /* Example-Game-CenterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Example-Game-CenterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88B15AAB1A5F0C000090B55C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88B15AAC1A5F0C000090B55C /* Example_Game_CenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Example_Game_CenterTests.swift; sourceTree = "<group>"; };
+		88B15AB61A5F0C0E0090B55C /* GameCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenter.swift; sourceTree = "<group>"; };
+		88B15AB81A5F0FBB0090B55C /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88B15AB91A5F0FBB0090B55C /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +64,7 @@
 		88B15A881A5F0C000090B55C = {
 			isa = PBXGroup;
 			children = (
+				88B15AB81A5F0FBB0090B55C /* GameKit.framework */,
 				88B15A931A5F0C000090B55C /* Example-Game-Center */,
 				88B15AA91A5F0C000090B55C /* Example-Game-CenterTests */,
 				88B15A921A5F0C000090B55C /* Products */,
@@ -79,6 +85,7 @@
 			children = (
 				88B15A961A5F0C000090B55C /* AppDelegate.swift */,
 				88B15A981A5F0C000090B55C /* ViewController.swift */,
+				88B15AB61A5F0C0E0090B55C /* GameCenter.swift */,
 				88B15A9A1A5F0C000090B55C /* Main.storyboard */,
 				88B15A9D1A5F0C000090B55C /* Images.xcassets */,
 				88B15A9F1A5F0C000090B55C /* LaunchScreen.xib */,
@@ -214,6 +221,7 @@
 			files = (
 				88B15A991A5F0C000090B55C /* ViewController.swift in Sources */,
 				88B15A971A5F0C000090B55C /* AppDelegate.swift in Sources */,
+				88B15AB71A5F0C0E0090B55C /* GameCenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
