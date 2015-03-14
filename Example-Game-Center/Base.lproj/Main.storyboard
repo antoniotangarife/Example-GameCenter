@@ -26,7 +26,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5PM-5F-Jx2">
-                                <rect key="frame" x="234" y="260" width="169" height="30"/>
+                                <rect key="frame" x="216" y="247" width="169" height="30"/>
                                 <state key="normal" title="Reset All Achievement">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -35,7 +35,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iux-0m-NGN">
-                                <rect key="frame" x="234" y="202" width="169" height="30"/>
+                                <rect key="frame" x="216" y="202" width="169" height="30"/>
                                 <state key="normal" title="Reset One Achievement">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -44,7 +44,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRW-9g-cT0">
-                                <rect key="frame" x="216" y="164" width="169" height="30"/>
+                                <rect key="frame" x="216" y="147" width="169" height="30"/>
                                 <state key="normal" title="Valide Achievement">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -53,7 +53,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1oe-oV-CXf">
-                                <rect key="frame" x="216" y="298" width="169" height="30"/>
+                                <rect key="frame" x="216" y="323" width="169" height="30"/>
                                 <state key="normal" title="Is Achievement Finished">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -62,7 +62,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwO-cl-Wfc">
-                                <rect key="frame" x="203" y="99" width="169" height="30"/>
+                                <rect key="frame" x="216" y="99" width="169" height="30"/>
                                 <state key="normal" title="Player Is Connected ?">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -71,7 +71,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QIA-DJ-dGE">
-                                <rect key="frame" x="172" y="325" width="213" height="29"/>
+                                <rect key="frame" x="194" y="371" width="213" height="29"/>
                                 <state key="normal" title="Show LeaderBoard By Name">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -80,8 +80,8 @@
                                     <action selector="ActionShowGameCenterLeaderBoard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9J6-rm-cWU"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dBd-jG-Tfu">
-                                <rect key="frame" x="234" y="277" width="169" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dBd-jG-Tfu">
+                                <rect key="frame" x="216" y="285" width="169" height="30"/>
                                 <state key="normal" title="Report Score">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -89,28 +89,43 @@
                                     <action selector="ActionReportScore:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mvR-60-bUV"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xkR-Uc-ekL">
+                                <rect key="frame" x="145" y="421" width="310" height="30"/>
+                                <state key="normal" title="Show Achievement After When You want">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ActionShowBannereAchievementAfter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VXJ-Ys-rsB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="gwO-cl-Wfc" secondAttribute="centerY" constant="186" id="4Sz-cZ-jfD"/>
-                            <constraint firstAttribute="centerY" secondItem="5PM-5F-Jx2" secondAttribute="centerY" id="97m-Er-hsF"/>
-                            <constraint firstAttribute="centerX" secondItem="5PM-5F-Jx2" secondAttribute="centerX" constant="50" id="ET1-Ny-EIF"/>
+                            <constraint firstAttribute="centerX" secondItem="QIA-DJ-dGE" secondAttribute="centerX" constant="-0.5" id="2Zw-nH-54v"/>
+                            <constraint firstItem="1oe-oV-CXf" firstAttribute="top" secondItem="dBd-jG-Tfu" secondAttribute="bottom" constant="8" id="3by-eR-zbz"/>
+                            <constraint firstItem="xkR-Uc-ekL" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="401" id="5TE-kn-Cu1"/>
+                            <constraint firstAttribute="centerX" secondItem="gwO-cl-Wfc" secondAttribute="centerX" constant="-0.5" id="7hJ-Ga-Fy0"/>
+                            <constraint firstAttribute="centerX" secondItem="Iux-0m-NGN" secondAttribute="centerX" constant="-0.5" id="8sB-qk-WfS"/>
+                            <constraint firstAttribute="centerX" secondItem="1oe-oV-CXf" secondAttribute="centerX" constant="-0.5" id="Dwl-UZ-uUD"/>
+                            <constraint firstItem="dBd-jG-Tfu" firstAttribute="top" secondItem="5PM-5F-Jx2" secondAttribute="bottom" constant="8" id="IuL-u1-blA"/>
                             <constraint firstAttribute="centerX" secondItem="QqA-4l-y8o" secondAttribute="centerX" id="Llo-Jz-3vC"/>
-                            <constraint firstAttribute="centerY" secondItem="QIA-DJ-dGE" secondAttribute="centerY" constant="-60" id="MSe-Px-Syr"/>
-                            <constraint firstAttribute="centerX" secondItem="gwO-cl-Wfc" secondAttribute="centerX" id="QQr-Gm-YYu"/>
+                            <constraint firstItem="Iux-0m-NGN" firstAttribute="top" secondItem="FRW-9g-cT0" secondAttribute="bottom" constant="25" id="MF1-Df-PE3"/>
+                            <constraint firstItem="gwO-cl-Wfc" firstAttribute="top" secondItem="QqA-4l-y8o" secondAttribute="bottom" constant="8" id="SGz-SJ-9et"/>
+                            <constraint firstAttribute="centerX" secondItem="5PM-5F-Jx2" secondAttribute="centerX" constant="-0.5" id="THy-h4-P0L"/>
                             <constraint firstAttribute="centerY" secondItem="QqA-4l-y8o" secondAttribute="centerY" constant="156" id="TdJ-VF-gu7"/>
-                            <constraint firstItem="1oe-oV-CXf" firstAttribute="top" secondItem="5PM-5F-Jx2" secondAttribute="bottom" constant="8" id="bL9-9e-RTf"/>
-                            <constraint firstAttribute="centerX" secondItem="1oe-oV-CXf" secondAttribute="centerX" constant="50" id="dGc-t8-s0v"/>
-                            <constraint firstAttribute="centerY" secondItem="Iux-0m-NGN" secondAttribute="centerY" constant="83" id="efG-mZ-3of"/>
-                            <constraint firstAttribute="centerX" secondItem="QIA-DJ-dGE" secondAttribute="centerX" id="q75-jy-nW4"/>
-                            <constraint firstAttribute="centerX" secondItem="Iux-0m-NGN" secondAttribute="centerX" constant="-18.5" id="rCz-rf-f1L"/>
-                            <constraint firstAttribute="centerX" secondItem="FRW-9g-cT0" secondAttribute="centerX" id="sHv-Su-H45"/>
-                            <constraint firstAttribute="centerY" secondItem="FRW-9g-cT0" secondAttribute="centerY" id="xft-3d-oVR"/>
-                            <constraint firstItem="5PM-5F-Jx2" firstAttribute="top" secondItem="FRW-9g-cT0" secondAttribute="bottom" constant="8" id="ze3-I4-eRr"/>
+                            <constraint firstAttribute="centerX" secondItem="dBd-jG-Tfu" secondAttribute="centerX" constant="-0.5" id="Vhu-5Z-XpR"/>
+                            <constraint firstAttribute="centerX" secondItem="xkR-Uc-ekL" secondAttribute="centerX" id="WZl-t8-mje"/>
+                            <constraint firstItem="FRW-9g-cT0" firstAttribute="top" secondItem="gwO-cl-Wfc" secondAttribute="bottom" constant="18" id="aaG-M0-Egh"/>
+                            <constraint firstItem="QqA-4l-y8o" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="41" id="dyq-fP-iVN"/>
+                            <constraint firstItem="QIA-DJ-dGE" firstAttribute="top" secondItem="1oe-oV-CXf" secondAttribute="bottom" constant="18" id="hMX-eQ-jaH"/>
+                            <constraint firstAttribute="centerX" secondItem="QqA-4l-y8o" secondAttribute="centerX" id="m4p-9v-SSa"/>
+                            <constraint firstItem="5PM-5F-Jx2" firstAttribute="top" secondItem="Iux-0m-NGN" secondAttribute="bottom" constant="15" id="s7f-hu-4kx"/>
+                            <constraint firstAttribute="centerX" secondItem="FRW-9g-cT0" secondAttribute="centerX" constant="-0.5" id="swz-rQ-Zgb"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="97m-Er-hsF"/>
+                                <exclude reference="Llo-Jz-3vC"/>
+                                <exclude reference="TdJ-VF-gu7"/>
                             </mask>
                         </variation>
                     </view>

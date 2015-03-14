@@ -7,19 +7,24 @@
 //
 
 import UIKit
-
+import GameKit
 class ViewController: UIViewController {
 
-    var gameCenter : GameCenter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Init GameCenter Singleton
-        let gameCenter = GameCenter.startGameCenter(self)
+        let gameCenter = GameCenter.sharedInstance
+        
+        // Set Delegate
+        gameCenter.delegate = self
         
         // Open Login page if player not login after loading GameCenter
         gameCenter.openLoginPageIfPlayerNotLogin = false
+        
+        // NOT Show Banniere when achievement is complete
+        gameCenter.showAchievementWhenComplete = false
         
         // If want show message Error
         gameCenter.debugMode = true
@@ -115,6 +120,32 @@ class ViewController: UIViewController {
         GameCenter.showGameCenterLeaderboard(leaderboardIdentifier: "CLASSEMENT_francais")
         
     }
+    
+    /**
+    Show Game Center LeaderBoard by Name
+    
+    :param: sender AnyObject
+    */
+    @IBAction func ActionShowBannereAchievementAfter(sender: AnyObject) {
+        
+
+        
+        if let achievements : [String:GKAchievement] = GameCenter.achievementsShowAfterWhenYouWantComplete() {
+            
+            for achievement in achievements  {
+                
+                var oneAchievement : GKAchievement = achievement.1
+                let double : Double =  oneAchievement.percentComplete
+                let id : String =  oneAchievement.identifier
+
+                println("Achievement id : \(id) value : \(double)")
+                
+            }
+        }
+
+        
+    }
+
 /*______________________________ OTHER ______________________________*/
     /**
     Simple dialog func

@@ -46,32 +46,30 @@ class GameCenter: NSObject, GKGameCenterControllerDelegate {
         }}
     
     /// Achievements of player
-    private var gameCenterAchievements = [String:GKAchievement]()
+    private var achievementsCache = [String:GKAchievement]()
     
     /// ViewController MainView
-    private var vc: UIViewController?
+    var delegate: UIViewController?
     
     ///  Fist load GameCenter if you want open GameCenter
     var openLoginPageIfPlayerNotLogin : Bool = true
     
     var debugMode : Bool = false
     
+    private var achievementsCacheSeeAfter : [String:GKAchievement]?
+    
+    var showAchievementWhenComplete: Bool = true {
+        didSet {
+            /* if want show banner when you want */
+            if !showAchievementWhenComplete { self.achievementsCacheSeeAfter = [String:GKAchievement]() }
+        }
+    }
     
 /*_______________________________________ STARTER _______________________________________*/
     /**
-    Start With delegate ViewController
-    
-    :param: delegate UIViewController Delegate
-    */
-    class func startGameCenter(delegate : UIViewController) -> GameCenter {
-        let game = GameCenter.sharedInstance
-        game.vc = delegate
-        return game
-    }
-    /**
         Singleton GameCenter Instance
     */
-    private class var sharedInstance: GameCenter {
+    class var sharedInstance: GameCenter {
         struct Static {
             static var onceToken: dispatch_once_t = 0
             static var instance: GameCenter? = nil
@@ -107,16 +105,19 @@ class GameCenter: NSObject, GKGameCenterControllerDelegate {
                 self.canUseGameCenter = false
                 
             } else {
-                /* If not login open login GameCenter if need */
-                if gameCenterVC != nil && self.openLoginPageIfPlayerNotLogin {
-                    self.vc!.presentViewController(gameCenterVC, animated: true, completion: nil)
-                    
-                } else if self.gameCenterPlayer.authenticated == true {
-                    self.canUseGameCenter = true
-                    
-                } else  {
-                    self.canUseGameCenter = false
+                if let delegateController = self.delegate {
+                    /* If not login open login GameCenter if need */
+                    if gameCenterVC != nil && self.openLoginPageIfPlayerNotLogin {
+                        delegateController.presentViewController(gameCenterVC, animated: true, completion: nil)
+                        
+                    } else if self.gameCenterPlayer.authenticated == true {
+                        self.canUseGameCenter = true
+                        
+                    } else  {
+                        self.canUseGameCenter = false
+                    }
                 }
+
             }
         }
     }
@@ -124,7 +125,7 @@ class GameCenter: NSObject, GKGameCenterControllerDelegate {
         Load achievement in cache
     */
     private func gameCenterLoadAchievements(){
-        if canUseGameCenter == true && self.gameCenterAchievements.count == 0 {
+        if canUseGameCenter == true && self.achievementsCache.count == 0 {
             GKAchievement.loadAchievementsWithCompletionHandler({ (var achievements:[AnyObject]!, error:NSError!) -> Void in
                 if error != nil {
                     if self.debugMode { println("Game Center: could not load achievements, error: \(error)") }
@@ -132,7 +133,7 @@ class GameCenter: NSObject, GKGameCenterControllerDelegate {
                 if achievements != nil {
                     for achievement in achievements  {
                         if let oneAchievement = achievement as? GKAchievement {
-                            self.gameCenterAchievements[oneAchievement.identifier] = oneAchievement
+                            self.achievementsCache[oneAchievement.identifier] = oneAchievement
                         }
                     }
                 }
@@ -157,12 +158,14 @@ class GameCenter: NSObject, GKGameCenterControllerDelegate {
     class func showGameCenter() {
         
         let gameCenter = GameCenter.sharedInstance
-        
-        if gameCenter.canUseGameCenter == true {
-            var gc = GKGameCenterViewController()
-            gc.gameCenterDelegate = gameCenter
-            gameCenter.vc!.presentViewController(gc, animated: true, completion: nil)
+        if let delegateController = gameCenter.delegate {
+            if gameCenter.canUseGameCenter == true {
+                var gc = GKGameCenterViewController()
+                gc.gameCenterDelegate = gameCenter
+                delegateController.presentViewController(gc, animated: true, completion: nil)
+            }
         }
+
         
     }
     
@@ -172,14 +175,17 @@ class GameCenter: NSObject, GKGameCenterControllerDelegate {
     */
     class func showGameCenterLeaderboard(leaderboardIdentifier uleaderboardId :String) {
         let gameCenter = GameCenter.sharedInstance
-        
-        if gameCenter.canUseGameCenter == true && uleaderboardId != "" {
-            var gc = GKGameCenterViewController()
-            gc.gameCenterDelegate = gameCenter
-            gc.leaderboardIdentifier = uleaderboardId
-            gc.viewState = GKGameCenterViewControllerState.Leaderboards
-            gameCenter.vc!.presentViewController(gc, animated: true, completion: nil)
+
+        if let delegateController = gameCenter.delegate {
+            if gameCenter.canUseGameCenter == true && uleaderboardId != "" {
+                var gc = GKGameCenterViewController()
+                gc.gameCenterDelegate = gameCenter
+                gc.leaderboardIdentifier = uleaderboardId
+                gc.viewState = GKGameCenterViewControllerState.Leaderboards
+                delegateController.presentViewController(gc, animated: true, completion: nil)
+            }
         }
+
     }
     
     /**
@@ -195,18 +201,13 @@ class GameCenter: NSObject, GKGameCenterControllerDelegate {
         :param: achievementIdentifier
         :return: Bool True is finished
     */
-    class func ifAchievementFinished(achievementIdentifier uAchievementId:String) -> Bool{
-        let gameCenter = GameCenter.sharedInstance
+    class func ifAchievementFinished(#achievementIdentifier: String) -> Bool{
         
-        if gameCenter.canUseGameCenter == true {
-            var lookupAchievement:GKAchievement? = gameCenter.gameCenterAchievements[uAchievementId]
-            if let achievement = lookupAchievement {
-                if achievement.percentComplete == 100 { return true }
-            } else {
-                gameCenter.gameCenterAchievements[uAchievementId] = GKAchievement(identifier: uAchievementId)
-                return ifAchievementFinished(achievementIdentifier: uAchievementId)
-            }
+        if let achievement = GameCenter.achievementForIndetifier(identifierAchievement: achievementIdentifier) {
+            if achievement.percentComplete == 100 { return true }
+            
         }
+
         return false
     }
 
@@ -216,39 +217,49 @@ class GameCenter: NSObject, GKGameCenterControllerDelegate {
         :param: Progress achievement Double (ex: 10% = 10.00)
         :param: Achievement Identifier
     */
-    class func addProgressToAnAchievement(progress uProgress:Double,achievementIdentifier uAchievementId:String) {
-        let gameCenter = GameCenter.sharedInstance
-
-        if gameCenter.canUseGameCenter == true {
-            var lookupAchievement:GKAchievement? = gameCenter.gameCenterAchievements[uAchievementId]
-            
-            if let achievement = lookupAchievement {
-                if achievement.percentComplete != 100 {
-                    achievement.percentComplete = uProgress
-                    
-                    if uProgress == 100.0  {
-                        /* show banner only if achievement is fully granted (progress is 100%) */
-                        achievement.showsCompletionBanner=true
+    class func addProgressToAnAchievement( #progress : Double, achievementIdentifier : String) {
+        
+        if let achievement = GameCenter.achievementForIndetifier(identifierAchievement: achievementIdentifier) {
+            if achievement.percentComplete != 100 {
+                achievement.percentComplete = progress
+                
+                /* show banner only if achievement is fully granted (progress is 100%) */
+                if progress == 100.0 {
+                    let gameCenter = GameCenter.sharedInstance
+                    if gameCenter.showAchievementWhenComplete {
+                        achievement.showsCompletionBanner = true
+                    } else {
+                        gameCenter.achievementsCacheSeeAfter![achievement.identifier] = achievement
                     }
-                    
-                    /* try to report the progress to the Game Center */
-                    GKAchievement.reportAchievements([achievement], withCompletionHandler:  {(var error:NSError!) -> Void in
-                        if error != nil {
-                            if gameCenter.debugMode { println("Couldn't save achievement (\(uAchievementId)) progress to \(uProgress) %") }
-                        }
-                    })
                 }
-            /* Is Finish */
-            } else {
                 
-                gameCenter.gameCenterAchievements[uAchievementId] = GKAchievement(identifier: uAchievementId)
                 
-                /* recursive recall this func now that the achievement exist */
-                addProgressToAnAchievement(progress: uProgress, achievementIdentifier: uAchievementId)
+                /* try to report the progress to the Game Center */
+                GKAchievement.reportAchievements([achievement], withCompletionHandler:  {(var error:NSError!) -> Void in
+                    
+                    if error != nil {
+                        println("Couldn't save achievement (\(achievementIdentifier)) progress to \(progress) %")
+                    }
+                })
             }
         }
     }
+    /**
+        Get Achievement Complete if you have ( showAchievementWhenComplete = false )
     
+        Example :
+        for achievement achievement as? GKAchievement in achievements  {
+            if let oneAchievement = achievement as? GKAchievement {
+                oneAchievement.identifier
+            }
+        }
+    
+        :returns: [String : GKAchievement] or nil
+    */
+    class func achievementsShowAfterWhenYouWantComplete() -> [String : GKAchievement]? {
+
+        return GameCenter.sharedInstance.achievementsCacheSeeAfter
+    }
     /**
         Reports a  score to Game Center
     
@@ -279,29 +290,30 @@ class GameCenter: NSObject, GKGameCenterControllerDelegate {
     
         :param: Achievement Identifier String
     */
-    class func resetOneAchievement(achievementIdentifier uAchievementId:String) {
-        let gameCenter = GameCenter.sharedInstance
+    class func resetOneAchievement(#achievementIdentifier :String) {
         
-        if gameCenter.canUseGameCenter == true {
-            var lookupAchievement:GKAchievement? = gameCenter.gameCenterAchievements[uAchievementId]
-            
-            if let achievement = lookupAchievement {
-                GKAchievement.resetAchievementsWithCompletionHandler({ (var error:NSError!) -> Void in
+            if let achievement = GameCenter.achievementForIndetifier(identifierAchievement: achievementIdentifier) {
+                GKAchievement.resetAchievementsWithCompletionHandler({ (var error:NSError!) ->
+                    Void in
+                    
                     if error != nil {
-                        if gameCenter.debugMode { println("Couldn't Reset achievement (\(uAchievementId))") }
+                        println("Couldn't Reset achievement (\(achievementIdentifier))")
+                        
                     } else {
-                        if gameCenter.debugMode { println("Reset achievement (\(uAchievementId))") }
+                   
+                        
+                        if let achievementsSeeAfter = GameCenter.sharedInstance.achievementsCacheSeeAfter {
+                            if let achievementFind = achievementsSeeAfter[achievementIdentifier] {
+                               achievementFind.percentComplete = 0
+                            }
+                        }
+                        
+                        achievement.percentComplete = 0
+                        println("Reset achievement (\(achievementIdentifier))")
                     }
+                    
                 })
-                
-            } else {
-                /* Load in cache if above this is not done */
-                gameCenter.gameCenterAchievements[uAchievementId] = GKAchievement(identifier: uAchievementId)
-                
-                /* recursive recall this func now that the achievement exist */
-                self.resetOneAchievement(achievementIdentifier: uAchievementId)
             }
-        }
     }
     
     /**
@@ -310,31 +322,45 @@ class GameCenter: NSObject, GKGameCenterControllerDelegate {
     class func resetAllAchievements() {
         let gameCenter = GameCenter.sharedInstance
         
+        //if gameCenter.canUseGameCenter == true {
+            
+            for lookupAchievement in gameCenter.achievementsCache {
+                
+                var achievementID = lookupAchievement.0
+                GameCenter.resetOneAchievement(achievementIdentifier: achievementID)
+
+            }
+       // }
+    }
+    /**
+    Get Achievement
+    
+    :param: identifierAchievement Identifier achievement
+    
+    :returns: GKAchievement Or nil if not exist
+    */
+    class func achievementForIndetifier(#identifierAchievement : NSString) -> GKAchievement? {
+        let gameCenter = GameCenter.sharedInstance
+        
         if gameCenter.canUseGameCenter == true {
             
-            for lookupAchievement in gameCenter.gameCenterAchievements {
-                var achievementID = lookupAchievement.0
-                var lookupAchievement:GKAchievement? =  lookupAchievement.1
+            if let achievementFind = gameCenter.achievementsCache[identifierAchievement]? {
+                return achievementFind
+            } else {
                 
-                if let achievement = lookupAchievement {
-                    GKAchievement.resetAchievementsWithCompletionHandler({ (var error:NSError!) -> Void in
-                        if error != nil {
-                            if gameCenter.debugMode { println("Couldn't Reset achievement (\(achievementID))") }
-                            
-                        } else {
-                            if gameCenter.debugMode { println("Reset achievement (\(achievementID))") }
-                            
-                        }
-                    })
-                    
-                } else {
-                    /* Load in cache if above this is not done */
-                    gameCenter.gameCenterAchievements[achievementID] = GKAchievement(identifier: achievementID)
+                if  let achievementGet = GKAchievement(identifier: identifierAchievement) {
+                    gameCenter.achievementsCache[identifierAchievement] = achievementGet
                     
                     /* recursive recall this func now that the achievement exist */
-                    self.resetOneAchievement(achievementIdentifier: achievementID)
+                    return GameCenter.achievementForIndetifier(identifierAchievement: identifierAchievement)
+                } else {
+                    return nil
                 }
             }
         }
+        return nil
     }
+/*____________________________ GameCenter Public GKAchievement __________________________________________________*/
+
+
 }
