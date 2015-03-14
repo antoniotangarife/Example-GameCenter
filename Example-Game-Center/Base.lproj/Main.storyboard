@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6724" systemVersion="14C81h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D87p" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QqA-4l-y8o">
-                                <rect key="frame" x="197" y="129" width="206" height="30"/>
+                                <rect key="frame" x="197" y="61" width="206" height="30"/>
                                 <state key="normal" title="Open Game Center Player">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -34,13 +34,17 @@
                                     <action selector="ActionResetAchievement:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pMn-fw-hsu"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Achievement Identifier" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MPD-pf-3gx">
-                                <rect key="frame" x="203" y="167" width="214" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iux-0m-NGN">
+                                <rect key="frame" x="234" y="202" width="169" height="30"/>
+                                <state key="normal" title="Reset One Achievement">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ActionOneAchievement:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ETu-VG-TZ4"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRW-9g-cT0">
-                                <rect key="frame" x="216" y="213" width="169" height="30"/>
+                                <rect key="frame" x="216" y="164" width="169" height="30"/>
                                 <state key="normal" title="Valide Achievement">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -54,21 +58,53 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="ActionIsFinish:" destination="BYZ-38-t0r" eventType="touchUpInside" id="t7X-Hc-ZAt"/>
+                                    <action selector="ActionIsFinish:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DSP-xS-pH2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwO-cl-Wfc">
+                                <rect key="frame" x="203" y="99" width="169" height="30"/>
+                                <state key="normal" title="Player Is Connected ?">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ActionIfLoginToGameCenter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vTK-I2-nbH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QIA-DJ-dGE">
+                                <rect key="frame" x="172" y="325" width="213" height="29"/>
+                                <state key="normal" title="Show LeaderBoard By Name">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ActionIsFinish:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tCM-G2-Suw"/>
+                                    <action selector="ActionShowGameCenterLeaderBoard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9J6-rm-cWU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dBd-jG-Tfu">
+                                <rect key="frame" x="234" y="277" width="169" height="30"/>
+                                <state key="normal" title="Report Score">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ActionReportScore:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mvR-60-bUV"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerY" secondItem="gwO-cl-Wfc" secondAttribute="centerY" constant="186" id="4Sz-cZ-jfD"/>
                             <constraint firstAttribute="centerY" secondItem="5PM-5F-Jx2" secondAttribute="centerY" id="97m-Er-hsF"/>
                             <constraint firstAttribute="centerX" secondItem="5PM-5F-Jx2" secondAttribute="centerX" constant="50" id="ET1-Ny-EIF"/>
                             <constraint firstAttribute="centerX" secondItem="QqA-4l-y8o" secondAttribute="centerX" id="Llo-Jz-3vC"/>
+                            <constraint firstAttribute="centerY" secondItem="QIA-DJ-dGE" secondAttribute="centerY" constant="-60" id="MSe-Px-Syr"/>
+                            <constraint firstAttribute="centerX" secondItem="gwO-cl-Wfc" secondAttribute="centerX" id="QQr-Gm-YYu"/>
                             <constraint firstAttribute="centerY" secondItem="QqA-4l-y8o" secondAttribute="centerY" constant="156" id="TdJ-VF-gu7"/>
-                            <constraint firstAttribute="centerX" secondItem="MPD-pf-3gx" secondAttribute="centerX" id="aNX-Jr-Qqs"/>
                             <constraint firstItem="1oe-oV-CXf" firstAttribute="top" secondItem="5PM-5F-Jx2" secondAttribute="bottom" constant="8" id="bL9-9e-RTf"/>
                             <constraint firstAttribute="centerX" secondItem="1oe-oV-CXf" secondAttribute="centerX" constant="50" id="dGc-t8-s0v"/>
+                            <constraint firstAttribute="centerY" secondItem="Iux-0m-NGN" secondAttribute="centerY" constant="83" id="efG-mZ-3of"/>
+                            <constraint firstAttribute="centerX" secondItem="QIA-DJ-dGE" secondAttribute="centerX" id="q75-jy-nW4"/>
+                            <constraint firstAttribute="centerX" secondItem="Iux-0m-NGN" secondAttribute="centerX" constant="-18.5" id="rCz-rf-f1L"/>
                             <constraint firstAttribute="centerX" secondItem="FRW-9g-cT0" secondAttribute="centerX" id="sHv-Su-H45"/>
-                            <constraint firstItem="FRW-9g-cT0" firstAttribute="top" secondItem="MPD-pf-3gx" secondAttribute="bottom" constant="16" id="sxj-W9-Cxd"/>
                             <constraint firstAttribute="centerY" secondItem="FRW-9g-cT0" secondAttribute="centerY" id="xft-3d-oVR"/>
                             <constraint firstItem="5PM-5F-Jx2" firstAttribute="top" secondItem="FRW-9g-cT0" secondAttribute="bottom" constant="8" id="ze3-I4-eRr"/>
                         </constraints>
@@ -78,9 +114,6 @@
                             </mask>
                         </variation>
                     </view>
-                    <connections>
-                        <outlet property="textIDAchievement" destination="MPD-pf-3gx" id="cjD-5R-GXn"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
