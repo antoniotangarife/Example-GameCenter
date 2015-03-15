@@ -24,7 +24,7 @@ class ViewController: UIViewController {
         gameCenter.openLoginPageIfPlayerNotLogin = false
         
         // NOT Show Banniere when achievement is complete
-        gameCenter.showAchievementWhenComplete = false
+        gameCenter.showBannerAchievementWhenComplete = false
         
         // If want show message Error
         gameCenter.debugMode = true
@@ -130,7 +130,7 @@ class ViewController: UIViewController {
         
 
         
-        if let achievements : [String:GKAchievement] = GameCenter.achievementsShowAfterWhenYouWantComplete() {
+        if let achievements : [String:GKAchievement] = GameCenter.achievementCompleteAndBannerNotShowing() {
             
             for achievement in achievements  {
                 
